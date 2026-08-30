@@ -1,0 +1,842 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Manoj Kumar | Portfolio</title>  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #131a2e;
+      --card: #ffffff;
+      --muted: #f1f3f8;
+      --muted-foreground: #5b6478;
+      --primary: #1a2238;
+      --primary-foreground: #ffffff;
+      --border: #e4e7ef;
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* INTRO ANIMATION */
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    #intro.exit {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .mark {
+      font-size: clamp(4rem, 15vw, 8rem);
+      font-weight: bold;
+      color: white;
+      animation: introPop 1.2s ease;
+    }
+
+    @keyframes introPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* HEADER */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+    }
+
+    .badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: var(--muted-foreground);
+    }
+
+    nav a:hover {
+      color: var(--foreground);
+    }
+
+    @media(max-width:640px) {
+      nav {
+        display: none;
+      }
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 5px 15px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      color: var(--muted-foreground);
+      margin-bottom: 30px;
+    }
+
+    /* HERO */
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero-name {
+      font-size: clamp(45px, 8vw, 80px);
+      line-height: 1.05;
+      margin: 20px 0;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      margin-bottom: 30px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--muted);
+    }
+
+    /* ABOUT */
+
+    #about {
+      background: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    @media(max-width:800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-text p {
+      color: var(--muted-foreground);
+      margin-bottom: 15px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .num {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .label {
+      color: var(--muted-foreground);
+      font-size: 14px;
+    }
+
+    .profile-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 35px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      margin: auto;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* SKILLS */
+
+    #skills {
+      background: white;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    @media(max-width:640px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .bar {
+      height: 10px;
+      background: var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 20px;
+    }
+
+    /* PROJECTS */
+
+    #projects {
+      background: var(--muted);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    @media(max-width:700px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: var(--radius);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-letter {
+      width: 55px;
+      height: 55px;
+      background: var(--primary);
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: var(--muted);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .card p {
+      color: var(--muted-foreground);
+      margin-top: 10px;
+    }
+
+    /* CONTACT */
+
+    #contact {
+      text-align: center;
+    }
+
+    #contact .btn-row {
+      justify-content: center;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+  </style></head><body>  <!-- INTRO -->  <div id="intro">
+    <div class="mark">MK</div>
+  </div>  <!-- HEADER -->  <header><div class="header-inner">
+
+  <a href="#hero" class="logo">
+
+    <span class="badge">MK</span>
+
+    MANOJ KUMAR
+
+  </a>
+
+  <nav>
+
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+
+  </nav>
+
+</div>
+
+  </header>  <!-- HERO -->  <section id="hero"><div class="container hero-content">
+
+  <span class="eyebrow">
+    WELCOME TO MY PORTFOLIO
+  </span>
+
+  <h1 class="hero-name">
+   MANOJ KUMAR<br>
+   VAVITIKALUVA
+
+  </h1>
+
+  <p class="hero-desc">
+
+    I am a passionate learner and web developer.
+    I enjoy building clean and modern websites.
+
+  </p>
+
+
+  <!-- BUTTONS -->
+
+  <div class="btn-row">
+
+    <a href="#projects" class="btn btn-primary">
+      View My Work
+    </a>
+
+    <a href="resume.pdf" target="_blank" class="btn btn-outline">
+      View Resume
+    </a>
+
+    <a href="resume.pdf" download class="btn btn-outline">
+      Download Resume
+    </a>
+
+  </div>
+
+</div>
+
+  </section>  <!-- ABOUT -->  <section id="about"><div class="container about-grid">
+
+  <div class="about-text">
+
+    <span class="eyebrow">
+      ABOUT ME
+    </span>
+
+    <h2 class="section-title">
+
+      Passionate learner and developer.
+
+    </h2>
+
+    <p>
+
+      I am Manoj Kumar Vavitikaluva, a student and aspiring web developer.
+
+    </p>
+
+    <p>
+
+      I enjoy learning new technologies and building creative projects.
+
+    </p>
+
+
+    <div class="stats">
+
+      <div>
+
+        <div class="num">1+</div>
+
+        <div class="label">
+          Years Learning
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="num">5+</div>
+
+        <div class="label">
+          Projects
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="num">3+</div>
+
+        <div class="label">
+          Skills
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="profile-card">
+
+    <div class="avatar">
+      MK
+    </div>
+
+    <h3>
+      Manoj Kumar
+    </h3>
+
+    <p>
+      Aspiring Web Developer
+    </p>
+
+  </div>
+
+</div>
+
+  </section>  <!-- SKILLS -->  <section id="skills"><div class="container">
+
+  <span class="eyebrow">
+    SKILLS
+  </span>
+
+  <h2 class="section-title">
+
+    Technologies I Am Learning
+
+  </h2>
+
+
+  <div class="skills-grid">
+
+
+    <div>
+
+      <div class="skill-top">
+
+        <span>HTML</span>
+
+        <span>85%</span>
+
+      </div>
+
+      <div class="bar">
+
+        <div class="fill" style="width:85%"></div>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="skill-top">
+
+        <span>CSS</span>
+
+        <span>75%</span>
+
+      </div>
+
+      <div class="bar">
+
+        <div class="fill" style="width:75%"></div>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="skill-top">
+
+        <span>JavaScript</span>
+
+        <span>60%</span>
+
+      </div>
+
+      <div class="bar">
+
+        <div class="fill" style="width:60%"></div>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <div class="skill-top">
+
+        <span>Python</span>
+
+        <span>50%</span>
+
+      </div>
+
+      <div class="bar">
+
+        <div class="fill" style="width:50%"></div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+  </section>  <!-- PROJECTS -->  <section id="projects"><div class="container">
+
+  <span class="eyebrow">
+    PROJECTS
+  </span>
+
+  <h2 class="section-title">
+
+    My Projects
+
+  </h2>
+
+
+  <div class="cards-grid">
+
+
+    <div class="card">
+
+      <div class="project-letter">
+        P
+      </div>
+
+      <div class="tags">
+
+        <span class="tag">HTML</span>
+
+        <span class="tag">CSS</span>
+
+      </div>
+
+      <h3>
+        Portfolio Website
+      </h3>
+
+      <p>
+
+        A personal portfolio website to showcase my skills and projects.
+
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="project-letter">
+        D
+      </div>
+
+      <div class="tags">
+
+        <span class="tag">HTML</span>
+
+        <span class="tag">CSS</span>
+
+        <span class="tag">JavaScript</span>
+
+      </div>
+
+      <h3>
+        Dino Game
+      </h3>
+
+      <p>
+
+        A simple browser game created using HTML, CSS and JavaScript.
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+  </section>  <!-- CONTACT -->  <section id="contact"><div class="container">
+
+  <span class="eyebrow">
+    CONTACT
+  </span>
+
+  <h2 class="section-title">
+
+    Let's Connect
+
+  </h2>
+
+  <p class="section-sub">
+
+    Feel free to contact me.
+
+  </p>
+
+
+  <div class="btn-row">
+
+    <a href="mailto:manojkumar994997@gmail.com" class="btn btn-primary">
+      Send Email
+    </a>
+
+    <a href="https://www.linkedin.com/in/manoj-yadav-273223417?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="btn btn-outline">
+      LinkedIn
+    </a>
+
+    <a href="https://github.com/manojkonda253-hue" class="btn btn-outline">
+      GitHub
+    </a>
+
+  </div>
+
+</div>
+
+  </section>  <!-- FOOTER -->  <footer><div class="footer-inner">
+
+  <div class="logo">
+
+    <span class="badge">MK</span>
+
+    MANOJ KUMAR
+
+  </div>
+
+
+  <span>
+
+    © <span id="year"></span>
+    Manoj Kumar. All rights reserved.
+
+  </span>
+
+
+  <div class="footer-links">
+
+    <a href="resume.pdf" target="_blank">
+      Resume
+    </a>
+
+    <a href="#">
+      LinkedIn
+    </a>
+
+    <a href="#">
+      GitHub
+    </a>
+
+  </div>
+
+</div>
+
+  </footer>  <!-- JAVASCRIPT -->  <script>
+
+    /* FOOTER YEAR */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* INTRO SCREEN */
+
+    const intro =
+      document.getElementById("intro");
+
+
+    setTimeout(() => {
+
+      intro.classList.add("exit");
+
+    }, 2000);
+
+
+    setTimeout(() => {
+
+      intro.remove();
+
+    }, 2800);
+
+  </script></body>
+</html>
